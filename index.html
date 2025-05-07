@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Undangan Pernikahan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Scheherazade&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -16,6 +17,7 @@
     body {
       background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
       overflow-x: hidden;
+      font-family: 'Quicksand', sans-serif;
     }
 
 
@@ -29,7 +31,7 @@
       margin: auto;
       overflow-y: auto;
       transition: opacity 1s ease, transform 1s ease;
-      background-color: #fff;
+      background: linear-gradient(to bottom, #f0e2a4, #7dbb77); /* Gradasi dari kuning ke oranye */
       animation: fadeIn 1.2s ease;
     }
 
@@ -39,7 +41,7 @@
     }
 
     .invitation {
-      background: url('header.jpg') no-repeat center center;
+      background: url('rian.png') no-repeat center center;
       background-size: cover;
       display: flex;
       flex-direction: column;
@@ -56,7 +58,7 @@
     .invitation h2 {
       font-size: 20px;
       font-style: italic;
-      color: #fff;
+      color: #ffffff;
       animation: slideIn 1.2s ease-in-out;
     }
 
@@ -68,7 +70,7 @@
     .invitation h1 {
       font-size: 58px;
       font-family: 'Brush Script MT', cursive;
-      color: #fff;
+      color: #ffffff;
       margin: 20px 0 40px;
       animation: fadeIn 1.5s ease-in-out;
     }
@@ -76,7 +78,7 @@
     .invitation p,
     .guest-name {
       font-size: 14px;
-      color: #fff;
+      color: #ffffff;
     }
 
     .guest-name {
@@ -145,6 +147,135 @@
       backdrop-filter: blur(5px);
     }
 
+    /* Card Akad Nikah */
+  .akad-nikah-card {
+    background: #fff0f5;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .akad-nikah-card .countdown-wrapper {
+    background-color: #fce4ec;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .akad-nikah-card .countdown-box {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+  }
+
+  .akad-nikah-card .calendar-btn {
+    background: #f1c3d4;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .akad-nikah-card .calendar-btn:hover {
+    background-color: #f8c1d0;
+  }
+
+  .akad-nikah-card .info-box {
+    background: #ffe0f1;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  /* Card Konfirmasi Kehadiran */
+  .konfirmasi-kehadiran {
+    background: #f3e5f5;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .konfirmasi-kehadiran input, .konfirmasi-kehadiran select {
+    background-color: #fff8f1;
+    border: 1px solid #f1c3d4;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .konfirmasi-kehadiran button {
+    background: #f1c3d4;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .konfirmasi-kehadiran button:hover {
+    background: #f8c1d0;
+  }
+
+  /* Card Ucapan & Do'a */
+  .ucapan-dan-doa {
+    background: #e1bee7;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .ucapan-dan-doa input, .ucapan-dan-doa textarea {
+    background-color: #fff8f1;
+    border: 1px solid #f1c3d4;
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .ucapan-dan-doa button {
+    background: #f1c3d4;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .ucapan-dan-doa button:hover {
+    background: #f8c1d0;
+  }
+
+  .ucapan-dan-doa .msg-bubble {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 10px;
+  }
+
+  .ucapan-dan-doa .info-box {
+    background: #f3e5f5;
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .ucapan-dan-doa .calendar-btn {
+    background: #f1c3d4;
+    border: none;
+    padding: 12px 25px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .ucapan-dan-doa .calendar-btn:hover {
+    background-color: #f8c1d0;
+  }
+
+
 
     .card.reveal {
       opacity: 1;
@@ -153,7 +284,7 @@
 
     .arabic {
       font-family: 'Scheherazade', serif;
-      font-size: 36px;
+      font-size: 24px;
       margin: 20px 0;
     }
 
@@ -165,7 +296,7 @@
 
     .nama-pria,
     .nama-wanita {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Great Vibes', cursive;
       font-size: 34px;
       color: #4a148c;
       margin-bottom: 16px;
@@ -325,12 +456,15 @@
   </style>
 </head>
 <body>
-
+  <audio autoplay loop>
+    <source src="ratna.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
 <!-- Section Cover -->
 <div class="section invitation" id="cover">
   <div class="content">
     <h2>The Wedding of</h2>
-    <h1>Ryan & Vira</h1>
+    <h1>Ryan & Fira</h1>
     <p>Kepada Yth :</p>
     <p class="guest-name">Nama Tamu</p>
   </div>
@@ -348,11 +482,11 @@
     <img src="daun.svg" alt="Daun Dekoratif" style="width: 60px; margin-bottom: 30px;">
     <h2 class="arabic">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
     <p class="rahmat">Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta’ala, insyaaAllah kami akan menyelenggarakan acara pernikahan:</p>
-    <div class="nama-pria">Fulan Syahputra</div>
-    <div class="orang-tua"><b>Putra Pertama dari:</b><br>Bapak Putra Sholeh & Ibu Putri Hawa</div>
+    <div class="nama-pria">Riyan Afrizal</div>
+    <div class="orang-tua"><b>Putra Kedua dari:</b><br>Bapak Rachman & Ibu Yuli Rodita</div>
     <div class="heart">❤</div>
-    <div class="nama-wanita">Fulanah Putri, S.Pd</div>
-    <div class="orang-tua"><b>Putri dari:</b><br>Bapak Putra Sholeh & Ibu Putri Hawa</div>
+    <div class="nama-wanita">Shafira</div>
+    <div class="orang-tua"><b>Putri dari:</b><br>Bapak Usep & Ibu Ai</div>
   </div>
 
   <div class="card akad-nikah-card">
@@ -370,8 +504,8 @@
     <div class="info-box">
       <h3>AKAD NIKAH</h3>
       <h1>----------------------</h1>
-      <div><strong>JUM'AT</strong></div>
-      <h1>20</h1>
+      <div><strong>SENIN</strong></div>
+      <h1>16</h1>
       <div><strong>JUNI</strong><br>2025</div>
       <h1>----------------------</h1>
       <p>🕒 Pukul : 08.00 s/d Selesai</p>
@@ -383,7 +517,7 @@
     </div>
   </div>
 
-  <div class="card">
+  <div class="card konfirmasi-kehadiran">
     <h3 style="margin-bottom: 30px;">Konfirmasi Kehadiran</h3>
     <form id="rsvp-form" onsubmit="sendRSVP(event)">
       <input type="text" id="name" placeholder="Nama Anda" required><br><br>
@@ -397,7 +531,7 @@
     <p id="rsvp-message" style="margin-top: 10px; color: green;"></p>
   </div>
 
-  <div class="card">
+  <div class="card ucapan-dan-doa">
   
     <h3 style="margin-bottom: 20px;">Ucapan & Do'a</h3>
     <p style="font-size: 10px; color: #555; margin-bottom: 20px;">
@@ -428,7 +562,7 @@
 
   function addToGoogleCalendar() {
     const eventTitle = "Akad Nikah Ryan & Vira";
-    const eventDate = "2025-06-20";
+    const eventDate = "2025-06-16";
     const eventStartTime = "08:00:00";
     const eventEndTime = "09:00:00"; // Ganti dengan waktu selesai jika ada
     const eventDescription = "Undangan Pernikahan Ryan & Vira\nLokasi: Jl. Handil Bakti, Komp Griya Annisah Tahap 1, Blok. H, No. 205, Barito Kuala.";
