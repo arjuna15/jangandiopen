@@ -60,6 +60,7 @@
       font-style: italic;
       color: #ffffff;
       animation: slideIn 1.2s ease-in-out;
+      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
     @keyframes slideIn {
@@ -69,7 +70,7 @@
 
     .invitation h1 {
       font-size: 58px;
-      font-family: 'Brush Script MT', cursive;
+      font-family: 'Great Vibes', cursive;
       color: #ffffff;
       margin: 20px 0 40px;
       animation: fadeIn 1.5s ease-in-out;
@@ -488,7 +489,7 @@
     <h2>The Wedding of</h2>
     <h1>Ryan & Fira</h1>
     <p>Kepada Yth :</p>
-    <p class="guest-name">Nama Tamu</p>
+    <p><span id="guest-name">Nama Tamu</span></p>
   </div>
   <div class="footer">
     <a href="#" class="btn" onclick="showInvitation()">
@@ -695,6 +696,19 @@
 
       cards.forEach(card => observer.observe(card));
     });
+
+    function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Mendapatkan nama tamu dari URL
+        const guestName = getQueryParam("nama-tamu");
+
+        if (guestName) {
+            // Jika ada nama tamu dalam URL, tampilkan
+            document.getElementById("guest-name").textContent = guestName;
+        }
 </script>
 
 </body>
