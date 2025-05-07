@@ -22,16 +22,16 @@
 
 
     .section {
-      position: absolute;
+      position: relative;
       top: 0;
       left: 0;
       width: 100%;
       max-width: 420px;
       height: 100vh;
-      margin: auto;
+      margin: 0 auto;
       overflow-y: auto;
       transition: opacity 1s ease, transform 1s ease;
-      background: linear-gradient(to bottom, #f0e2a4, #7dbb77); /* Gradasi dari kuning ke oranye */
+      background: linear-gradient(to bottom, #9c9a92, #ffffff); /* Gradasi dari kuning ke oranye */
       animation: fadeIn 1.2s ease;
     }
 
@@ -134,22 +134,33 @@
     }
 
     .card {
-      background: linear-gradient(135deg, #fffafc, #f5e9f7);
+      background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
+              url('header.jpg') center/cover no-repeat;
       padding: 100px 20px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
       margin-bottom: 25px;
       animation: fadeIn 1s ease forwards;
       opacity: 0;
-      transform: translateY(40px); 
-      transition: opacity 0.6s ease, transform 0.6s ease; 
-      border: 1px solid #f0d7eb;
+      transform: translateY(50px); 
+      transition: opacity 0.8s ease, transform 0.8s ease; 
+      /* border: 1px solid #f0d7eb; */
       backdrop-filter: blur(5px);
+      will-change: opacity, transform;
     }
+
+
+  .surat-card {
+    background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
+              url('background.jpg') center/cover no-repeat;
+    border-radius: 0px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
 
     /* Card Akad Nikah */
   .akad-nikah-card {
-    background: #fff0f5;
+    background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
+              url('villa.jpeg') center/cover no-repeat;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
@@ -182,7 +193,6 @@
   .akad-nikah-card .info-box {
     background: #ffe0f1;
     padding: 20px;
-    border-radius: 12px;
   }
 
   /* Card Konfirmasi Kehadiran */
@@ -218,7 +228,8 @@
 
   /* Card Ucapan & Do'a */
   .ucapan-dan-doa {
-    background: #e1bee7;
+    background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
+              url('doa.jpeg') center/cover no-repeat;
     padding: 30px;
     border-radius: 15px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -416,6 +427,17 @@
       margin-bottom: 15px;
     }
 
+    .card.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.6s ease-out;
+}
+
+.card.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
     .msg-bubble {
       background: #fff;
       border: 1px solid #ddd;
@@ -435,7 +457,7 @@
 
     @media only screen and (max-width: 480px) {
       .count-item {
-        width: 50px;
+        width: 70px;
         font-size: 12px;
       }
 
@@ -489,18 +511,15 @@
     <div class="orang-tua"><b>Putri dari:</b><br>Bapak Usep & Ibu Ai</div>
   </div>
 
-  <div class="card akad-nikah-card">
+  <div class="akad-nikah-card card hidden">
     <div class="countdown-title">Hitung Mundur Acara</div>
-    <div class="countdown-wrapper">
       <div class="countdown-box">
         <div class="count-item"><div id="days">0</div><small>Hari</small></div>
         <div class="count-item"><div id="hours">0</div><small>Jam</small></div>
         <div class="count-item"><div id="minutes">0</div><small>Menit</small></div>
         <div class="count-item"><div id="seconds">0</div><small>Detik</small></div>
       </div>
-      <button class="calendar-btn" onclick="addToGoogleCalendar()">📅 Simpan Di Kalender</button>
-    </div>
-
+      <button class="calendar-btn" onclick="addToGoogleCalendar()">📅 Simpan</button>
     <div class="info-box">
       <h3>AKAD NIKAH</h3>
       <h1>----------------------</h1>
@@ -508,17 +527,32 @@
       <h1>16</h1>
       <div><strong>JUNI</strong><br>2025</div>
       <h1>----------------------</h1>
-      <p>🕒 Pukul : 08.00 s/d Selesai</p>
+      <p style="font-size: 12px;">🕒 Pukul : 08.00 s/d 09.00</p>
       <div class="location">
         <strong>Lokasi Acara :</strong>
-        <p>Jl. Handil Bakti, Komp Griya Annisah Tahap 1,<br>Blok. H, No. 205<br>Barito Kuala</p>
+        <p style="font-size: 10px;">Jl. Handil Bakti, Komp Griya Annisah Tahap 1,<br>Blok. H, No. 205 Barito Kuala</p>
+      </div>
+      <a class="maps-btn" href="https://www.google.com/maps" target="_blank">📍 Google Maps</a>
+    </div>
+
+    <div class="info-box">
+      <h3>RESEPSI PERNIKAHAN</h3>
+      <h1>----------------------</h1>
+      <div><strong>SENIN</strong></div>
+      <h1>16</h1>
+      <div><strong>JUNI</strong><br>2025</div>
+      <h1>----------------------</h1>
+      <p style="font-size: 12px;">🕒 Pukul : 09.00 s/d Selesai</p>
+      <div class="location">
+        <strong>Lokasi Acara :</strong>
+        <p style="font-size: 10px;">Jl. Handil Bakti, Komp Griya Annisah Tahap 1,<br>Blok. H, No. 205 Barito Kuala</p>
       </div>
       <a class="maps-btn" href="https://www.google.com/maps" target="_blank">📍 Google Maps</a>
     </div>
   </div>
 
-  <div class="card konfirmasi-kehadiran">
-    <h3 style="margin-bottom: 30px;">Konfirmasi Kehadiran</h3>
+  <div class="card konfirmasi-kehadiran hidden">
+    <h3 style="margin-bottom: 30px;">RSVP</h3>
     <form id="rsvp-form" onsubmit="sendRSVP(event)">
       <input type="text" id="name" placeholder="Nama Anda" required><br><br>
       <select id="attendance" required>
@@ -531,7 +565,18 @@
     <p id="rsvp-message" style="margin-top: 10px; color: green;"></p>
   </div>
 
-  <div class="card ucapan-dan-doa">
+  <div class="card surat-card hidden">
+    <h3 style="font-size: 12px;">
+      وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
+    </h3>
+    <p style="font-size: 10px; margin-top: 30px; color: #6e6e6e;">Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, 
+      supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. 
+      Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.
+    </p>
+    <h3 style="margin-top: 40px;">Q.S Ar-Rum Ayat 21</h3>
+  </div>
+
+  <div class="card ucapan-dan-doa hidden">
   
     <h3 style="margin-bottom: 20px;">Ucapan & Do'a</h3>
     <p style="font-size: 10px; color: #555; margin-bottom: 20px;">
@@ -556,8 +601,9 @@
 
 <script>
   function showInvitation() {
-    document.getElementById('cover').style.display = 'none';
-    document.getElementById('detail').classList.add('active');
+    document.getElementById("cover").style.display = "none";
+    document.getElementById("detail").classList.add("active");
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   function addToGoogleCalendar() {
@@ -632,6 +678,23 @@
       document.getElementById("seconds").innerText = seconds;
     }
   }, 1000);
+
+  document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll(".card");
+      cards.forEach(card => card.classList.remove("show")); // Pastikan show tidak ada
+
+      const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, {
+  threshold: 0.5 // hanya trigger kalau 50% elemen terlihat
+});
+
+      cards.forEach(card => observer.observe(card));
+    });
 </script>
 
 </body>
