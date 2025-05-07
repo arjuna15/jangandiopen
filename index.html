@@ -38,7 +38,7 @@
     }
 
     .invitation {
-      background: url('header.jpg') no-repeat center center;
+      background: url('img/header.jpg') no-repeat center center;
       background-size: cover;
       display: flex;
       flex-direction: column;
@@ -128,6 +128,14 @@
       box-shadow: 0 10px 25px rgba(0,0,0,0.1);
       margin-bottom: 25px;
       animation: fadeIn 1s ease forwards;
+      opacity: 0;
+      transform: translateY(40px); 
+      transition: opacity 0.6s ease, transform 0.6s ease; 
+    }
+
+    .card.reveal {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .arabic {
@@ -273,7 +281,7 @@
       }
 
       .btn, .calendar-btn {
-        width: 100%;
+        width: 50%;
         margin-top: 10px;
       }
 
@@ -309,6 +317,7 @@
 <!-- Section Detail -->
 <div class="section detail" id="detail">
   <div class="card">
+    <img src="img/daun.svg" alt="Daun Dekoratif" style="width: 60px; margin-bottom: 30px;">
     <h2 class="arabic">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
     <p class="rahmat">Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta’ala, insyaaAllah kami akan menyelenggarakan acara pernikahan:</p>
     <div class="nama-pria">Fulan Syahputra</div>
@@ -335,9 +344,9 @@
       <h1>----------------------</h1>
       <div><strong>JUM'AT</strong></div>
       <h1>20</h1>
-      <div><strong>DESEMBER</strong><br>2023</div>
+      <div><strong>JUNI</strong><br>2025</div>
       <h1>----------------------</h1>
-      <p>🕒 Pukul : 08.00 – 09.00 Wita</p>
+      <p>🕒 Pukul : 08.00 s/d Selesai</p>
       <div class="location">
         <strong>Lokasi Acara :</strong>
         <p>Jl. Handil Bakti, Komp Griya Annisah Tahap 1,<br>Blok. H, No. 205<br>Barito Kuala</p>
@@ -348,7 +357,7 @@
 
   <div class="card">
     <h3>Konfirmasi Kehadiran</h3>
-    <form id="rsvp-form" onsubmit="submitRSVP(event)">
+    <form id="rsvp-form" onsubmit="sendRSVP(event)">
       <input type="text" id="name" placeholder="Nama Anda" required><br><br>
       <select id="attendance" required>
         <option value="">Apakah Anda akan hadir?</option>
@@ -367,12 +376,19 @@
     document.getElementById('detail').classList.add('active');
   }
 
-  function submitRSVP(event) {
+  function sendRSVP(event) {
     event.preventDefault();
     const name = document.getElementById("name").value;
     const attendance = document.getElementById("attendance").value;
-    document.getElementById("rsvp-message").innerText = `Terima kasih, ${name}. Konfirmasi Anda (${attendance}) telah diterima!`;
-    document.getElementById("rsvp-form").reset();
+    const phoneNumber = "+6285798424106"; // Ganti dengan nomor WhatsApp tujuan
+    const message = `Konfirmasi Kehadiran:\nNama: ${name}\nKehadiran: ${attendance}`;
+    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+    
+    // Tampilkan pesan konfirmasi di halaman
+    document.getElementById("rsvp-message").innerText = `Terima kasih, ${name}. Konfirmasi Anda (${attendance}) telah dikirim ke WhatsApp!`;
+
+    // Arahkan ke WhatsApp
+    window.location.href = whatsappURL;
   }
 
   // Countdown
@@ -380,17 +396,22 @@
   const countdown = setInterval(() => {
     const now = new Date().getTime();
     const distance = targetDate - now;
-
-    document.getElementById("days").innerText = Math.max(0, Math.floor(distance / (1000 * 60 * 60 * 24)));
-    document.getElementById("hours").innerText = Math.max(0, Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
-    document.getElementById("minutes").innerText = Math.max(0, Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)));
-    document.getElementById("seconds").innerText = Math.max(0, Math.floor((distance % (1000 * 60)) / 1000));
-
-    if (distance < 0) {
+    
+    if (distance <= 0) {
       clearInterval(countdown);
-      document.querySelector('.countdown-wrapper').innerHTML = "<strong>Acara telah berlangsung.</strong>";
+    } else {
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
     }
   }, 1000);
 </script>
+
 </body>
 </html>
