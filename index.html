@@ -1,715 +1,379 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Undangan Pernikahan</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #f3e5f5 0%, #ffffff 100%);
-      overflow-x: hidden;
-      font-family: 'Quicksand', sans-serif;
-    }
-
-
-    .section {
-      position: relative;
-      top: 0;
-      left: 0;
-      width: 100%;
-      max-width: 420px;
-      height: 100vh;
-      margin: 0 auto;
-      overflow-y: auto;
-      transition: opacity 1s ease, transform 1s ease;
-      background: linear-gradient(to bottom, #9c9a92, #ffffff); /* Gradasi dari kuning ke oranye */
-      animation: fadeIn 1.2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .invitation {
-      background: url('rian.png') no-repeat center center;
-      background-size: cover;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 40px 20px;
-      text-align: center;
-    }
-
-    .invitation .content {
-      margin-top: 250px;
-      animation: fadeIn 1s ease-in-out;
-    }
-
-    .invitation h2 {
-      font-size: 20px;
-      font-style: italic;
-      color: #ffffff;
-      animation: slideIn 1.2s ease-in-out;
-      font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-
-    .invitation h1 {
-      font-size: 58px;
-      font-family: 'Great Vibes', cursive;
-      color: #ffffff;
-      margin: 20px 0 40px;
-      animation: fadeIn 1.5s ease-in-out;
-    }
-
-    .invitation p,
-    .guest-name {
-      font-size: 14px;
-      color: #ffffff;
-    }
-
-    .guest-name {
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .btn {
-      background-color: white;
-      border: 2px solid #333;
-      padding: 10px 20px;
-      font-size: 14px;
-      cursor: pointer;
-      border-radius: 30px;
-      text-decoration: none;
-      display: inline-block;
-      transition: background 0.3s, transform 0.2s;
-    }
-
-    .btn, .calendar-btn, .maps-btn {
-      background: linear-gradient(135deg, #fefefe, #f3e5f5);
-      border: 1px solid #d1b3d6;
-      color: #4a148c;
-      font-weight: bold;
-    }
-
-    
-    .btn:hover, .calendar-btn:hover, .maps-btn:hover {
-      background: #ebd4f0;
-      transform: scale(1.05);
-    }
-
-
-    .btn img {
-      vertical-align: middle;
-      width: 16px;
-      margin-right: 6px;
-    }
-
-    .footer {
-      margin-bottom: 40px;
-      animation: fadeIn 2s ease-in-out;
-    }
-
-    .detail {
-      padding: 30px 20px;
-      text-align: center;
-      display: none;
-    }
-
-    .detail.active {
-      display: block;
-    }
-
-    .card {
-      background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
-              url('header.jpg') center/cover no-repeat;
-      padding: 100px 20px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-      margin-bottom: 25px;
-      animation: fadeIn 1s ease forwards;
-      opacity: 0;
-      transform: translateY(50px); 
-      transition: opacity 0.8s ease, transform 0.8s ease; 
-      /* border: 1px solid #f0d7eb; */
-      backdrop-filter: blur(5px);
-      will-change: opacity, transform;
-    }
-
-
-  .surat-card {
-    background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
-              url('background.jpg') center/cover no-repeat;
-    border-radius: 0px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-    /* Card Akad Nikah */
-  .akad-nikah-card {
-    background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
-              url('villa.jpeg') center/cover no-repeat;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .akad-nikah-card .countdown-wrapper {
-    background-color: #fce4ec;
-    padding: 15px;
-    border-radius: 10px;
-  }
-
-  .akad-nikah-card .countdown-box {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 15px;
-  }
-
-  .akad-nikah-card .calendar-btn {
-    background: #f1c3d4;
-    border: none;
-    padding: 12px 25px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-  }
-
-  .akad-nikah-card .calendar-btn:hover {
-    background-color: #f8c1d0;
-  }
-
-  .akad-nikah-card .info-box {
-    background: #ffe0f1;
-    padding: 20px;
-  }
-
-  /* Card Konfirmasi Kehadiran */
-  .konfirmasi-kehadiran {
-    background: #f3e5f5;
-    border-radius: 15px;
-    padding: 30px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .konfirmasi-kehadiran input, .konfirmasi-kehadiran select {
-    background-color: #fff8f1;
-    border: 1px solid #f1c3d4;
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  .konfirmasi-kehadiran button {
-    background: #f1c3d4;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 30px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .konfirmasi-kehadiran button:hover {
-    background: #f8c1d0;
-  }
-
-  /* Card Ucapan & Do'a */
-  .ucapan-dan-doa {
-    background: linear-gradient(135deg, rgba(141, 126, 126, 0.8), rgba(245, 233, 247, 0.8)),
-              url('doa.jpeg') center/cover no-repeat;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-
-  .ucapan-dan-doa input, .ucapan-dan-doa textarea {
-    background-color: #fff8f1;
-    border: 1px solid #f1c3d4;
-    border-radius: 8px;
-    padding: 12px;
-    width: 100%;
-    margin-bottom: 15px;
-  }
-
-  .ucapan-dan-doa button {
-    background: #f1c3d4;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 30px;
-    color: #fff;
-    font-weight: bold;
-    cursor: pointer;
-  }
-
-  .ucapan-dan-doa button:hover {
-    background: #f8c1d0;
-  }
-
-  .ucapan-dan-doa .msg-bubble {
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 12px 16px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    margin-bottom: 10px;
-  }
-
-  .ucapan-dan-doa .info-box {
-    background: #f3e5f5;
-    padding: 20px;
-    border-radius: 12px;
-  }
-
-  .ucapan-dan-doa .calendar-btn {
-    background: #f1c3d4;
-    border: none;
-    padding: 12px 25px;
-    font-weight: bold;
-    border-radius: 30px;
-    cursor: pointer;
-  }
-
-  .ucapan-dan-doa .calendar-btn:hover {
-    background-color: #f8c1d0;
-  }
-
-
-
-    .card.reveal {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .arabic {
-      font-family: 'Scheherazade', serif;
-      font-size: 24px;
-      margin: 20px 0;
-    }
-
-    .rahmat {
-      font-size: 14px;
-      margin-bottom: 30px;
-      line-height: 1.6;
-    }
-
-    .nama-pria,
-    .nama-wanita {
-      font-family: 'Great Vibes', cursive;
-      font-size: 34px;
-      color: #4a148c;
-      margin-bottom: 16px;
-      letter-spacing: 1px;
-    }
-
-
-    .orang-tua {
-      font-size: 13px;
-      color: #555;
-      margin-bottom: 30px;
-    }
-
-    .heart {
-      font-size: 40px;
-      margin: 20px 0;
-      color: #c62828;
-      animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    .countdown-wrapper {
-      background: #fefefe;
-      padding: 20px;
-      border-radius: 12px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .countdown-title {
-      font-size: 18px;
-      margin-bottom: 10px;
-      font-weight: bold;
-      color: #333;
-    }
-
-    .countdown-box {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 10px;
-    }
-
-    .count-item {
-      background-color: #6a1b9a;
-      color: white;
-      border-radius: 8px;
-      padding: 10px;
-      width: 60px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    }
-
-    .count-item div {
-      font-size: 20px;
-      font-weight: bold;
-    }
-
-    .count-item small {
-      font-size: 12px;
-      display: block;
-      margin-top: 4px;
-    }
-
-    .calendar-btn {
-      background: #fff;
-      border: 1px solid #888;
-      border-radius: 20px;
-      padding: 8px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: all 0.3s ease;
-    }
-
-    .calendar-btn:hover {
-      background: #eee;
-    }
-
-    .info-box {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .info-box h1 {
-      font-size: 48px;
-      margin: 0;
-      color: #333;
-    }
-
-    .location {
-      margin: 15px 0;
-      font-size: 14px;
-      line-height: 1.6;
-    }
-
-    .maps-btn {
-      display: inline-block;
-      margin-top: 10px;
-      background: #fff;
-      border: 1px solid #888;
-      padding: 8px 12px;
-      border-radius: 20px;
-      text-decoration: none;
-      color: #000;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-
-    .maps-btn:hover {
-      background: #ddd;
-    }
-
-    .guest-message {
-      margin-bottom: 15px;
-    }
-
-    .card.hidden {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.6s ease-out;
-}
-
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-    .msg-bubble {
-      background: #fff;
-      border: 1px solid #ddd;
-      border-radius: 12px;
-      padding: 12px 16px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-      animation: fadeIn 0.6s ease;
-    }
-
-    input, select {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      width: 100%;
-      font-size: 14px;
-    }
-
-    @media only screen and (max-width: 480px) {
-      .count-item {
-        width: 70px;
-        font-size: 12px;
-      }
-
-      .btn, .calendar-btn {
-        width: 50%;
-        margin-top: 10px;
-      }
-
-      .nama-pria,
-      .nama-wanita {
-        font-size: 26px;
-      }
-
-      .info-box h1 {
-        font-size: 32px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ada yang mau bilang...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            font-weight: 300;
+        }
+
+        .question {
+            font-size: 1.4em;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.5;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a52);
+            color: white;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.6);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #51cf66, #40c057);
+            color: white;
+            box-shadow: 0 5px 15px rgba(81, 207, 102, 0.4);
+        }
+
+        .btn-no:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(81, 207, 102, 0.6);
+        }
+
+        .btn-no:active {
+            transform: scale(0.95);
+        }
+
+        .message {
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            display: none;
+        }
+
+        .message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: #ff6b6b;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .floating-text {
+            position: absolute;
+            font-size: 14px;
+            color: #ff6b6b;
+            font-weight: bold;
+            animation: floatText 2s ease-in-out;
+            opacity: 0;
+        }
+
+        @keyframes floatText {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .question {
+                font-size: 1.2em;
+            }
+            
+            .buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="ratna.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
-  </audio>
-<!-- Section Cover -->
-<div class="section invitation" id="cover">
-  <div class="content">
-    <h2>The Wedding of</h2>
-    <h1>Ryan & Fira</h1>
-    <p>Kepada Yth :</p>
-    <p><span id="guest-name">Nama Tamu</span></p>
-  </div>
-  <div class="footer">
-    <a href="#" class="btn" onclick="showInvitation()">
-      <img src="https://img.icons8.com/material-outlined/24/open-envelope.png" alt="icon" />
-      Buka Undangan
-    </a>
-  </div>
-</div>
-
-<!-- Section Detail -->
-<div class="section detail" id="detail">
-  <div class="card">
-    <img src="daun.svg" alt="Daun Dekoratif" style="width: 60px; margin-bottom: 30px;">
-    <h2 class="arabic">السَّلَامُ عَلَيْكُمْ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
-    <p class="rahmat">Dengan memohon rahmat dan ridho Allah Subhanahu Wa Ta’ala, insyaaAllah kami akan menyelenggarakan acara pernikahan:</p>
-    <div class="nama-pria">Riyan Afrizal</div>
-    <div class="orang-tua"><b>Putra Kedua dari:</b><br>Bapak Rachman & Ibu Yuli Rodita</div>
-    <div class="heart">❤</div>
-    <div class="nama-wanita">Shafira</div>
-    <div class="orang-tua"><b>Putri dari:</b><br>Bapak Usep & Ibu Ai</div>
-  </div>
-
-  <div class="akad-nikah-card card hidden">
-    <div class="countdown-title">Hitung Mundur Acara</div>
-      <div class="countdown-box">
-        <div class="count-item"><div id="days">0</div><small>Hari</small></div>
-        <div class="count-item"><div id="hours">0</div><small>Jam</small></div>
-        <div class="count-item"><div id="minutes">0</div><small>Menit</small></div>
-        <div class="count-item"><div id="seconds">0</div><small>Detik</small></div>
-      </div>
-      <button class="calendar-btn" onclick="addToGoogleCalendar()">📅 Simpan</button>
-    <div class="info-box">
-      <h3>AKAD NIKAH</h3>
-      <h1>----------------------</h1>
-      <div><strong>SENIN</strong></div>
-      <h1>16</h1>
-      <div><strong>JUNI</strong><br>2025</div>
-      <h1>----------------------</h1>
-      <p style="font-size: 12px;">🕒 Pukul : 08.00 s/d 09.00</p>
-      <div class="location">
-        <strong>Lokasi Acara :</strong>
-        <p style="font-size: 10px;">Jl. Handil Bakti, Komp Griya Annisah Tahap 1,<br>Blok. H, No. 205 Barito Kuala</p>
-      </div>
-      <a class="maps-btn" href="https://www.google.com/maps" target="_blank">📍 Google Maps</a>
+    <div class="container">
+        <h1>💖 Hai Sayanggg! 💖</h1>
+        
+        <p class="question">Aku punya pertanyaan nih...</p>
+        
+        <div class="buttons">
+            <button class="btn btn-no" onclick="handleNoClick()">Enggak marah kok 😊</button>
+            <button class="btn btn-yes" id="btnYes" onmouseover="moveYesButton()">Iya, aku marah! 😠</button>
+        </div>
+        
+        <div class="message" id="message">
+            <h3>Yay! Aku tau kamu baik banget 💕</h3>
+            <p>Makasih ya udah ga marah sama aku 😘</p>
+            <p>Aku janji bakal lebih perhatian lagi!</p>
+        </div>
+        
+        <div class="hearts" id="hearts"></div>
     </div>
 
-    <div class="info-box">
-      <h3>RESEPSI PERNIKAHAN</h3>
-      <h1>----------------------</h1>
-      <div><strong>SENIN</strong></div>
-      <h1>16</h1>
-      <div><strong>JUNI</strong><br>2025</div>
-      <h1>----------------------</h1>
-      <p style="font-size: 12px;">🕒 Pukul : 09.00 s/d Selesai</p>
-      <div class="location">
-        <strong>Lokasi Acara :</strong>
-        <p style="font-size: 10px;">Jl. Handil Bakti, Komp Griya Annisah Tahap 1,<br>Blok. H, No. 205 Barito Kuala</p>
-      </div>
-      <a class="maps-btn" href="https://www.google.com/maps" target="_blank">📍 Google Maps</a>
-    </div>
-  </div>
+    <script>
+        let yesClickCount = 0;
+        const messages = [
+            "Yakin marah? 😢",
+            "Beneran marah? 💔",
+            "Jangan dong sayang... 🥺",
+            "Aku minta maaf deh! 🙏",
+            "Please jangan marah 😭",
+            "Aku sayang banget sama kamu! 💖"
+        ];
 
-  <div class="card konfirmasi-kehadiran hidden">
-    <h3 style="margin-bottom: 30px;">RSVP</h3>
-    <form id="rsvp-form" onsubmit="sendRSVP(event)">
-      <input type="text" id="name" placeholder="Nama Anda" required><br><br>
-      <select id="attendance" required>
-        <option value="">Apakah Anda akan hadir?</option>
-        <option value="Hadir">Hadir</option>
-        <option value="Tidak Hadir">Tidak Hadir</option>
-      </select><br><br>
-      <button type="submit" class="btn">Kirim Konfirmasi</button>
-    </form>
-    <p id="rsvp-message" style="margin-top: 10px; color: green;"></p>
-  </div>
-
-  <div class="card surat-card hidden">
-    <h3 style="font-size: 12px;">
-      وَمِنْ ءَايَٰتِهِۦٓ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَٰجًا لِّتَسْكُنُوٓا۟ إِلَيْهَا وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً ۚ إِنَّ فِى ذَٰلِكَ لَءَايَٰتٍ لِّقَوْمٍ يَتَفَكَّرُونَ
-    </h3>
-    <p style="font-size: 10px; margin-top: 30px; color: #6e6e6e;">Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, 
-      supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang. 
-      Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda bagi kaum yang berfikir.
-    </p>
-    <h3 style="margin-top: 40px;">Q.S Ar-Rum Ayat 21</h3>
-  </div>
-
-  <div class="card ucapan-dan-doa hidden">
-  
-    <h3 style="margin-bottom: 20px;">Ucapan & Do'a</h3>
-    <p style="font-size: 10px; color: #555; margin-bottom: 20px;">
-      Ucapan selamat dan kebahagiaan bisa dari mana saja. Tanpa jabatan tangan atau pelukan hangat, masih ada simpul-simpul senyum dan doa-doa baik yang kami harapkan.
-    </p>
-  
-    <form onsubmit="submitMessage(event)" style="margin-bottom: 30px;">
-      <input type="text" id="guestName" placeholder="Isikan Nama Anda" required style="margin-bottom: 10px;"><br>
-      <textarea id="guestMessage" placeholder="Berikan Ucapan Dan Doa Restu" required style="padding: 10px; border-radius: 8px; border: 1px solid #ccc; width: 100%; height: 80px; resize: none;"></textarea><br><br>
-      <button type="submit" class="btn">Kirimkan Ucapan</button>
-    </form>
-  
-    <div id="messageList"></div>
-
-    <p style="font-size: 10px; color: #555; margin-bottom: 20px;">Merupakan suatu kehormatan dan kebahagiaan bagi kami sekeluarga apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kedua mempelai. 
-      Atas kehadiran serta doa restu, kami ucapkan terima kasih.
-    </p>
-    <h2 class="arabic" style="margin-top: 30px;">وَعَلَيْكُمُ السَّلاَمُ وَرَحْمَةُ اللهِ وَبَرَكَاتُهُ</h2>
-  </div>
-</div>
-
-
-<script>
-  function showInvitation() {
-    document.getElementById("cover").style.display = "none";
-    document.getElementById("detail").classList.add("active");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  function addToGoogleCalendar() {
-    const eventTitle = "Akad Nikah Ryan & Vira";
-    const eventDate = "2025-06-16";
-    const eventStartTime = "08:00:00";
-    const eventEndTime = "09:00:00"; // Ganti dengan waktu selesai jika ada
-    const eventDescription = "Undangan Pernikahan Ryan & Vira\nLokasi: Jl. Handil Bakti, Komp Griya Annisah Tahap 1, Blok. H, No. 205, Barito Kuala.";
-    const eventLocation = "Jl. Handil Bakti, Komp Griya Annisah Tahap 1, Blok. H, No. 205, Barito Kuala";
-
-    const googleCalendarURL = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(eventTitle)}&dates=${encodeURIComponent(eventDate + 'T' + eventStartTime)}%2F${encodeURIComponent(eventDate + 'T' + eventEndTime)}&details=${encodeURIComponent(eventDescription)}&location=${encodeURIComponent(eventLocation)}&sf=true&output=xml`;
-
-    window.open(googleCalendarURL, "_blank");
-  }
-
-  function submitMessage(event) {
-    event.preventDefault();
-    const name = document.getElementById('guestName').value;
-    const message = document.getElementById('guestMessage').value;
-
-    const list = document.getElementById('messageList');
-
-    const newMsg = document.createElement('div');
-    newMsg.className = 'guest-message';
-
-    newMsg.innerHTML = `
-      <div class="msg-bubble">
-        <strong>${name}</strong><br>
-        <span>${message}</span>
-      </div>
-    `;
-
-    list.prepend(newMsg);
-
-    document.getElementById('guestName').value = '';
-    document.getElementById('guestMessage').value = '';
-  }
-
-
-  function sendRSVP(event) {
-    event.preventDefault();
-    const name = document.getElementById("name").value;
-    const attendance = document.getElementById("attendance").value;
-    const phoneNumber = "+6285798424106"; // Ganti dengan nomor WhatsApp tujuan
-    const message = `Konfirmasi Kehadiran:\nNama: ${name}\nKehadiran: ${attendance}`;
-    const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    
-    // Tampilkan pesan konfirmasi di halaman
-    document.getElementById("rsvp-message").innerText = `Terima kasih, ${name}. Konfirmasi Anda (${attendance}) telah dikirim ke WhatsApp!`;
-
-    // Arahkan ke WhatsApp
-    window.location.href = whatsappURL;
-  }
-
-  // Countdown
-  const targetDate = new Date("June 20, 2025 08:00:00").getTime();
-  const countdown = setInterval(() => {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-    
-    if (distance <= 0) {
-      clearInterval(countdown);
-    } else {
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-    }
-  }, 1000);
-
-  document.addEventListener("DOMContentLoaded", function () {
-      const cards = document.querySelectorAll(".card");
-      cards.forEach(card => card.classList.remove("show")); // Pastikan show tidak ada
-
-      const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
-    }
-  });
-}, {
-  threshold: 0.5 // hanya trigger kalau 50% elemen terlihat
-});
-
-      cards.forEach(card => observer.observe(card));
-    });
-
-    function getQueryParam(param) {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get(param);
+        function moveYesButton() {
+            if (yesClickCount < 3) {
+                const btnYes = document.getElementById('btnYes');
+                const container = document.querySelector('.container');
+                const containerRect = container.getBoundingClientRect();
+                const btnRect = btnYes.getBoundingClientRect();
+                
+                const maxX = containerRect.width - btnRect.width - 20;
+                const maxY = containerRect.height - btnRect.height - 20;
+                
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+                
+                btnYes.style.position = 'absolute';
+                btnYes.style.left = randomX + 'px';
+                btnYes.style.top = randomY + 'px';
+                
+                // Tambah efek teks mengambang
+                createFloatingText("Jangan klik aku! 😝", btnRect);
+                
+                yesClickCount++;
+                
+                if (yesClickCount < messages.length) {
+                    btnYes.textContent = messages[yesClickCount];
+                }
+            }
         }
 
-        // Mendapatkan nama tamu dari URL
-        const guestName = getQueryParam("nama-tamu");
-
-        if (guestName) {
-            // Jika ada nama tamu dalam URL, tampilkan
-            document.getElementById("guest-name").textContent = guestName;
+        function handleNoClick() {
+            const message = document.getElementById('message');
+            const hearts = document.getElementById('hearts');
+            
+            // Tampilkan pesan
+            message.classList.add('show');
+            
+            // Buat efek hati
+            createHearts();
+            
+            // Sembunyikan tombol
+            document.querySelector('.buttons').style.display = 'none';
+            
+            // Tambah efek konfetti
+            createConfetti();
         }
-</script>
 
+        function createFloatingText(text, position) {
+            const floatingText = document.createElement('div');
+            floatingText.className = 'floating-text';
+            floatingText.textContent = text;
+            floatingText.style.left = (position.left + position.width / 2) + 'px';
+            floatingText.style.top = (position.top - 10) + 'px';
+            
+            document.querySelector('.container').appendChild(floatingText);
+            
+            setTimeout(() => {
+                floatingText.remove();
+            }, 2000);
+        }
+
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '💖';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#51cf66', '#ffd43b', '#339af0', '#cc5de8'];
+            const container = document.querySelector('.container');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'absolute';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-20px';
+                confetti.style.animation = `confettiFall ${Math.random() * 3 + 2}s linear forwards`;
+                confetti.style.opacity = '0.8';
+                
+                const style = document.createElement('style');
+                style.textContent = `
+                    @keyframes confettiFall {
+                        0% {
+                            transform: translateY(0) rotate(0deg);
+                            opacity: 1;
+                        }
+                        100% {
+                            transform: translateY(500px) rotate(360deg);
+                            opacity: 0;
+                        }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                container.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.remove();
+                }, 5000);
+            }
+        }
+
+        // Efek ketik untuk judul
+        document.addEventListener('DOMContentLoaded', function() {
+            const title = document.querySelector('h1');
+            const originalText = title.textContent;
+            title.textContent = '';
+            
+            let i = 0;
+            const typeWriter = () => {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
+            };
+            
+            setTimeout(typeWriter, 1000);
+        });
+    </script>
 </body>
 </html>
